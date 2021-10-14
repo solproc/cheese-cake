@@ -10,8 +10,8 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
   },
   paper: {
-    height: 140,
-    width: 100,
+    height: 280,
+    width: 200,
   },
   control: {
     padding: theme.spacing(2),
@@ -28,7 +28,7 @@ const MarketCardList = (props) => {
 
   const getGridListCols = () => {
     if (isWidthUp("xl", props.width)) {
-      return 4;
+      return 3;
     }
 
     if (isWidthUp("lg", props.width)) {
@@ -48,19 +48,11 @@ const MarketCardList = (props) => {
   return (
     <GridList
       spacing={15}
-      cellHeight={400}
+      cellHeight={440}
       cols={getGridListCols()}
       className={classes.gridList}
     >
       {props.marketCards.map((cardItem, index) => {
-        // console.log(
-        //   cardItem.name,
-        //   cardItem.rarity,
-        //   cardItem.cid,
-        //   cardItem.sellPrice,
-        //   cardItem.maxBid,
-        //   cardItem.clothType
-        // );
         return (
           <GridListTile key={index}>
             <MarketCard
@@ -84,28 +76,7 @@ const MarketCardList = (props) => {
 };
 
 {
-  /* <GridList cellHeight={180} className={classes.gridList}>
-  <GridListTile key="Subheader" cols={2} style={{ height: "auto" }}>
-    <ListSubheader component="div">December</ListSubheader>
-  </GridListTile>
-  {tileData.map((tile) => (
-    <GridListTile key={tile.img}>
-      <img src={tile.img} alt={tile.title} />
-      <GridListTileBar
-        title={tile.title}
-        subtitle={<span>by: {tile.author}</span>}
-        actionIcon={
-          <IconButton
-            aria-label={`info about ${tile.title}`}
-            className={classes.icon}
-          >
-            <InfoIcon />
-          </IconButton>
-        }
-      />
-    </GridListTile>
-  ))}
-</GridList>; */
+
 }
 
 export default withWidth()(MarketCardList);

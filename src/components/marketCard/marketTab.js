@@ -129,8 +129,8 @@ const MarketTab = () => {
       <AppBar
         style={{
           backgroundColor: "#DF662B",
-          width: "%40",
-          maxWidth: "300",
+          width: "100%",
+          maxWidth: "680",
           borderRadius: 10,
         }}
         position="static"
@@ -147,8 +147,8 @@ const MarketTab = () => {
           <StyledTab
             label={
               <div>
-                <FaceIcon style={{ verticalAlign: "middle", marginRight: 8 }} />{" "}
-                All Items{" "}
+                <AccessibilityNewIcon style={{ verticalAlign: "middle", marginRight: 8 }} />{" "}
+                All Cakes{" "}
               </div>
             }
             {...a11yProps(0)}
@@ -156,8 +156,8 @@ const MarketTab = () => {
           <StyledTab
             label={
               <div>
-                <FaceIcon style={{ verticalAlign: "middle", marginRight: 8 }} />{" "}
-                Bean{" "}
+                <AccessibilityNewIcon style={{ verticalAlign: "middle", marginRight: 8 }} />{" "}
+                Small Cakes{" "}
               </div>
             }
             {...a11yProps(1)}
@@ -168,7 +168,7 @@ const MarketTab = () => {
                 <AccessibilityNewIcon
                   style={{ verticalAlign: "middle", marginRight: 8 }}
                 />{" "}
-                Top Wear{" "}
+                Top Cakes{" "}
               </div>
             }
             {...a11yProps(2)}
@@ -179,7 +179,7 @@ const MarketTab = () => {
                 <AccessibilityNewIcon
                   style={{ verticalAlign: "middle", marginRight: 8 }}
                 />{" "}
-                Bottom Wear{" "}
+               Base Cakes{" "}
               </div>
             }
             {...a11yProps(3)}
@@ -264,20 +264,20 @@ const MarketTab = () => {
         </Grid>
       </div>
       {allItemsFiltered.length == 0 ? (
-        <div>No Items Found</div>
+        <div>No Cakes Found</div>
       ) : (
         <>
           <TabPanel value={value} index={0}>
-            {allItemsFiltered.length ? <MarketCardList marketCards={allItemsFiltered} /> : <>No Items Found</>}
+            {allItemsFiltered.length ? <MarketCardList marketCards={allItemsFiltered} /> : <>No Cakes Found</>}
           </TabPanel>
           <TabPanel value={value} index={1}>
-            {heads.length ? <MarketCardList marketCards={heads} isProfile={false} /> : <>No Items Found</>}
+            {heads.length ? <MarketCardList marketCards={heads} isProfile={false} /> : <>No Cakess Found</>}
           </TabPanel>
           <TabPanel value={value} index={2}>
-            {middles.length ? <MarketCardList marketCards={middles} isProfile={false} />: <>No Items Found</>}
+            {middles.length ? <MarketCardList marketCards={middles} isProfile={false} />: <>No Cakes Found</>}
           </TabPanel>
           <TabPanel value={value} index={3}>
-            {bottoms.length ? <MarketCardList marketCards={bottoms} isProfile={false} />: <>No Items Found</>}
+            {bottoms.length ? <MarketCardList marketCards={bottoms} isProfile={false} />: <>No Cakes Found</>}
           </TabPanel>
         </>
       )}

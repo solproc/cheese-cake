@@ -22,10 +22,10 @@ import { getUsername } from "../../utils/getUsernameFromAddress";
 const useStyles = makeStyles({
   root: {
     backgroundColor: "#080808",
-    maxWidth: 345,
+    maxWidth: 512,
     borderRadius: 8,
     color: "#f1ffe3",
-    maxHeight: 395,
+    maxHeight: 480,
     "&:hover": {
       boxShadow:
         "0 1px 3px rgba(255,255,255,0.12), 0 1px 3px rgba(255,255,255,0.24)",
@@ -33,8 +33,8 @@ const useStyles = makeStyles({
     },
   },
   media: {
-    height: 220,
-    width: "100%",
+    height: 180,
+    width: 440,
     borderRadius: 5,
     transition: "transform 0.15s ease-in-out",
     "&:hover": {

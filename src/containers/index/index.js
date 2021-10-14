@@ -141,7 +141,7 @@ const Index = () => {
               flexDirection: "row",
               marginTop: 30,
               marginRight:"2vw",
-              marginLeft:"2vw"
+              marginLeft:"6vw"
             }}
             >
               <div  className={classes.boxes}
@@ -173,17 +173,7 @@ const Index = () => {
                   Make Best NFT
                 </Typography>
               </div>
-              <div className={classes.boxes}
-                    onClick={() => {
-                        window.location.href = "/avatars";
-                  }}
-              >
-                <ShareSharpIcon style={{ color: "#DF662B", fontSize: 50}}/>
-                <Typography className ={classes.boxText}>
-                  Create & Share
-                </Typography>
               </div>
-            </div>
 
         <Grid style={{marginRight: "3vw", marginLeft: "3vw", marginTop:20}}>
 

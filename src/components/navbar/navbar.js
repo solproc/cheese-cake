@@ -236,7 +236,7 @@ const Navbar = () => {
           IPFS Upload
     </MenuItem>
       <MenuItem onClick={() => {
-                window.location.href = "/avatars";
+                window.location.href = "/allItems";
               }}>
               <SupervisedUserCircleIcon
                 style={{
@@ -362,7 +362,7 @@ const Navbar = () => {
             <Button
               color="inherit"
               onClick={() => {
-                window.location.href = "/avatars";
+                window.location.href = "/allItems";
               }}
             >
               <SupervisedUserCircleIcon

@@ -199,7 +199,7 @@ const ItemPage = (props) => {
       justify="space-between"
       alignItems="flex-start"
     >
-      <Grid item xs={4}>
+      <Grid item xs={3}>
         <Grid
           container
           direction="column"
@@ -447,27 +447,6 @@ const ItemPage = (props) => {
                                     window.location = "/profile/" + data.owner;
                                   }}
                                 >
-                                  {/* {
-                                    contractInterface !== "empty"
-                                    ? getUsername(contractInterface, transaction.returnValues.fromAddress).then(
-                                          (data) => {
-                                            return data.username;
-                                          }
-                                        )
-
-                                    : transaction.returnValues.fromAddress.slice(
-                                      0,
-                                      4
-                                    ) +
-                                      "..." +
-                                      transaction.returnValues.fromAddress.slice(
-                                        transaction.returnValues.fromAddress
-                                          .length - 2,
-                                        transaction.returnValues.fromAddress
-                                          .length
-                                      )
-                                  } */}
-                                  {/* {transaction.constructedFromUsername} */}
                                   {transaction.returnValues.fromAddress.slice(
                                     0,
                                     4
@@ -495,25 +474,6 @@ const ItemPage = (props) => {
                                     window.location = "/profile/" + data.owner;
                                   }}
                                 >
-                                  {/* {
-                                    contractInterface !== "empty"
-                                    ? getUsername(contractInterface, transaction.returnValues.toAddress).then(
-                                        (data) => {
-                                          return data.username;
-                                        }
-                                      )
-                                    : transaction.returnValues.toAddress.slice(
-                                      0,
-                                      4
-                                     ) +
-                                      "..." +
-                                      transaction.returnValues.toAddress.slice(
-                                        transaction.returnValues.toAddress
-                                          .length - 2,
-                                        transaction.returnValues.toAddress.length
-                                      )
-                                  } */}
-                                  {/* {transaction.constructedToUsername} */}
                                   {transaction.returnValues.toAddress.slice(
                                     0,
                                     4
@@ -538,7 +498,7 @@ const ItemPage = (props) => {
                                   style={{fontSize: 16}}
                                   color="primary"
                                   onClick={() => {
-                                    window.location.href =  "https://ropsten.etherscan.io/tx/" + transaction.transactionHash;
+                                    window.location.href =  "https://bscscan.com/tx/" + transaction.transactionHash;
                                   }}
                                 >
                               {transaction.transactionHash.slice(0, 4) +
