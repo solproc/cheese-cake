@@ -1,7 +1,7 @@
-// import React from "react";
-// import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
- import React, { Suspense, useEffect, lazy } from 'react'
- import { HashRouter, Route, Switch } from 'react-router-dom'
+ import React from "react";
+ import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
+// import React, { Suspense, useEffect, lazy } from 'react'
+// import { HashRouter, Route, Switch } from 'react-router-dom'
 import { RecoilRoot } from "recoil";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import MarketPlace from "./containers/marketPlace/marketPlace";
@@ -74,12 +74,11 @@ const App = () => {
 
   return (
     <>
-    <Suspense fallback={null}>
-   <HashRouter>
+   
     <ThemeProvider theme={darkTheme}>
       <CssBaseline />
         {metamask && <Navbar />}
-    <Suspense fallback={null}>
+    <Router>
         <Switch>
             <Route exact strict path="/" component={IndexPage} />
             <Route  exact strict path="/marketplace" component={MarketPlace} />
@@ -89,8 +88,7 @@ const App = () => {
             <Route exact strict path="/avatars" component={AvatarPage} />
             <Route  exact strict path="/notFound" component={NotFoundPage} />
             </Switch>
-        </Suspense>
-          <Snackbar
+            <Snackbar
               open={snackbarController}
               autoHideDuration={8000}
               anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
@@ -105,11 +103,10 @@ const App = () => {
                 message={<span id="client-snackbar" >{snackbarText}</span>}
             />
           </Snackbar>
-
+         </Router>
         </ThemeProvider>
-         </HashRouter>
-        </Suspense>
-      </>
+         
+        </>
   );
 };
 
