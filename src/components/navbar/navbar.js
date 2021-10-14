@@ -324,7 +324,7 @@ const Navbar = () => {
           <Button className={classes.title} variant="h6" noWrap onClick={() => {
                 window.location.href = "/";
               }} Button >
-            <img style={{height:50, marginTop:10}}src={"https://ipfs.io/ipfs/Qmcu8zqzYok5iA7EQzri24fMayPhPpREGTu6Yt6i1qjfNC"} alt={"Cheese NFT"} />
+            <img style={{height:50, marginTop:10}}src={"https://ipfs.io/ipfs/QmQphgL4GDa5fm6Vfi4QMASVEtEauxnfk6QFev7zGbNL6R"} alt={"Cheese Cake"} />
           </Button>
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
