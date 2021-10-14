@@ -95,19 +95,9 @@ const MarketPlace = () => {
   return (
     <Container maxWidth="md">
       <Typography variant="h4" style={{ marginBottom: 20, marginTop: 30 }}>
-        MarketPlace
+        Cheese Cake Shop
       </Typography>
-      {/* {address && <> {address}</>} */}
-
       <MarketTab style={{ marginTop: 10 }} />
-      {/* <div>
-        {data.map((item) => {
-          //console.log("item", item);
-          return item.name;
-        })}
-      </div> */}
-      {/* <div>{data.length}</div>
-      <Button onClick={() => console.log("button data", data)}>mybutton</Button> */}
     </Container>
   );
 };
