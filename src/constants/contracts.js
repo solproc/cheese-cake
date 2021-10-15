@@ -1,5 +1,5 @@
 const addresses = {
-  NFT_CONTRACTS_ADDRESS: "0x40E535B6fb2A7a99b235C5Cc29d9F2b5B7E1311f",
+  NFT_CONTRACTS_ADDRESS: "0x40e535b6fb2a7a99b235c5cc29d9f2b5b7e1311f",
 };
 export default addresses;
 

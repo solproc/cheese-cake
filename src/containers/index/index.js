@@ -40,7 +40,7 @@ const useStyles = makeStyles({
         ? 'linear-gradient(45deg, green 30%, #FF8E53 90%)'
         : 'linear-gradient(20deg, green 30%, darkcyan 90%)',
     border: 0,
-    borderRadius: 6,
+    borderRadius: 12,
     boxShadow: (props) =>
       props.color === 'red'
         ? '0 3px 5px 2px rgba(255, 105, 135, .3)'
@@ -56,7 +56,7 @@ const useStyles = makeStyles({
         ? 'linear-gradient(45deg, green 30%, #FF8E53 90%)'
         : 'linear-gradient(45deg, darkgreen 30%, #FF8E53 90%)',
     border: 0,
-    borderRadius: 6,
+    borderRadius: 12,
     boxShadow: (props) =>
       props.color === 'red'
         ? '0 3px 5px 2px rgba(255, 105, 135, .3)'
@@ -68,8 +68,8 @@ const useStyles = makeStyles({
   },
   boxes:{
     border: "1.5px solid #121212",
-    borderRadius: 6,
-    height: 150,
+    borderRadius: 12,
+    height: 280,
     width: 200,
     display: "flex",
     flexDirection: "column",
@@ -127,7 +127,7 @@ const Index = () => {
       <SnackbarContent style={{
           backgroundColor:'#130A0C',
           color: '#DF922B',
-          width:748.406,
+          width: "100%",
           fontSize: 14,
           }}
           message={<span id="client-snackbar" >In order to proceed to the marketplace and profile pages, you should install Metamask extension to your browser.</span>}
@@ -170,7 +170,7 @@ const Index = () => {
               >
                 <FormatListNumberedSharpIcon style={{ color: "#DF662B", fontSize: 50}}/>
                 <Typography className ={classes.boxText}>
-                  Make Best NFT
+                  Make Best Deal!
                 </Typography>
               </div>
               </div>

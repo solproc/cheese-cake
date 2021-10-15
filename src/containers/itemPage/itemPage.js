@@ -152,30 +152,30 @@ const ItemPage = (props) => {
 
     nft_contract_interface
       .getPastEvents("nftTransaction", {
-        filter: { id: parseInt(myId) + 1 },
-        fromBlock: 0,
+        filter: { id: parseInt(myId) + 1},
+        fromBlock: "latest",   // contract creation block
         toBlock: "latest",
       })
       .then((events) => {
-        //console.log("events.console.log", events);
+        console.log("events.console.log", events);
         events.reverse();
-        //console.log("events.console.log reverse", events);
+        console.log("events.console.log reverse", events);
         setTransactions(events);
       });
 
       nft_contract_interface.events.nftTransaction({
         filter: { id: parseInt(myId) + 1 },
-        //endBlock:"latest", // Using an array means OR: e.g. 20 or 23
         fromBlock: "latest",
-    }, function(error, event){})
-    .on('data', function(event){
+        toBlock: "latest",
+    }, function(error, events){})
+    .on('data', function(events){
 
         window.location.reload();
 
     })
-    .on('changed', function(event){
+    .on('changed', function(events){
 
-        console.log("event is changed",event);
+        console.log("events is changed",events);
     })
     .on('error', console.error);
 
@@ -198,6 +198,7 @@ const ItemPage = (props) => {
       direction="row"
       justify="space-between"
       alignItems="flex-start"
+
     >
       <Grid item xs={3}>
         <Grid
@@ -207,15 +208,10 @@ const ItemPage = (props) => {
           alignItems="center"
           style={{ height: "90vh" }}
         >
-          {/* <Paper variant="outlined"> */}
-          <div
-          // style={{
-          //   backgroundColor: "#006666",
-          // }}
-          >
+          <div>
             <img style={{ width: 300 }} src={"https://ipfs.io/ipfs/"+data.cid} />
           </div>
-          {/* </Paper> */}
+
         </Grid>
       </Grid>
       <Grid item xs={8}>
@@ -234,8 +230,7 @@ const ItemPage = (props) => {
                 justify="center"
                 alignItems="flex-start"
               >
-                {/* <Paper variant="outlined"> */}
-                <div
+              <div
                   style={{
                     display: "flex",
                     flexDirection: "row",
@@ -305,13 +300,7 @@ const ItemPage = (props) => {
                         }}
                       >
                         {owner}
-                        {/* {data.owner.slice(0, 4) +
-                          "..." +
-                          data.owner.slice(
-                            data.owner.length - 2,
-                            data.owner.length
-                          )} */}
-                      </Button>
+                        </Button>
                     </div>
                     <div
                       style={{
@@ -329,7 +318,7 @@ const ItemPage = (props) => {
                         }}
                       />
                       <Typography variant="body1" display="block" gutterbottom ="true">
-                        Price: {data.isOnSale ? window.web3.utils.fromWei(data.sellPrice) + " BNB" : "-"}
+                        Price: {data.isOnSale ? window.web3.utils.fromWei(data.sellPrice) + "BNB" : "-"}
                       </Typography>
                     </div>
                     <div>
@@ -348,7 +337,7 @@ const ItemPage = (props) => {
                           gutterbottom="true"
                         >
                           Highest Bid:{" "}
-                          {data.isBiddable ? window.web3.utils.fromWei(data.maxBid) + " BNB" : "-"}
+                          {data.isBiddable ? window.web3.utils.fromWei(data.maxBid) + "BNB" : "-"}
                         </Typography>
                       </div>
                     </div>
@@ -419,7 +408,7 @@ const ItemPage = (props) => {
                     </TableHead>
                     <TableBody>
                       {transactions.map((transaction, index) => {
-                        // console.log(transaction);
+                        console.log(transaction);
                         return (
                           <TableRow
                             key={index}
@@ -436,7 +425,7 @@ const ItemPage = (props) => {
 
                             <TableCell align="center" style={{color:"#000", fontSize: 16}}>
                               {transaction.returnValues.fromAddress ==
-                              "0x0000000000000000000000000000000000000000" ? (
+                              "0x0000000000000000000000000000000000000000"? (
                                 "-"
                               ) : (
                                 <Button
@@ -463,7 +452,7 @@ const ItemPage = (props) => {
                             </TableCell>
                             <TableCell align="center" style={{color:"#000", fontSize: 16}}>
                               {transaction.returnValues.toAddress ==
-                              "0x0000000000000000000000000000000000000000" ? (
+                              "0x0000000000000000000000000000000000000000"? (
                                 "-"
                               ) : (
                                 <Button
@@ -490,7 +479,7 @@ const ItemPage = (props) => {
                             <TableCell align="center" style={{color:"#000", fontSize: 16}}>
                               {transaction.returnValues.value == 0
                                 ? " - "
-                                : window.web3.utils.fromWei(transaction.returnValues.value) + " BNB"}
+                                : window.web3.utils.fromWei(transaction.returnValues.value) + "BNB"}
                             </TableCell>
                             <TableCell align="center" style={{color:"#000", fontSize: 16}}>
                             <Button

@@ -3,7 +3,7 @@ export const getUsername = async (smart_contract_interface, address) => {
     .users(address)
     .call()
     .then((data) => {
-      // console.log("dataa", data);
+      console.log("detaaaa", data);
       return data;
     })
     .catch((error) => {

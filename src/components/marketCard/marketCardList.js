@@ -27,7 +27,7 @@ const MarketCardList = (props) => {
   // console.log(props.marketCards);
 
   const getGridListCols = () => {
-    if (isWidthUp("xl", props.width)) {
+    if (isWidthUp("xs", props.width)) {
       return 3;
     }
 
@@ -47,7 +47,7 @@ const MarketCardList = (props) => {
 
   return (
     <GridList
-      spacing={15}
+      spacing={25}
       cellHeight={440}
       cols={getGridListCols()}
       className={classes.gridList}

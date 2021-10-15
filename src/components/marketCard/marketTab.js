@@ -67,15 +67,15 @@ const StyledTabs = withStyles({
     top: 5,
     bottom: 5,
     marginLeft: 4,
-    height: "80%",
+    height: "85%",
     display: "flex",
     justifyContent: "center",
     backgroundColor: "transparent",
     "& > span": {
       borderRadius: 10,
-      width: "100%",
+      width: "150%",
       backgroundColor: "#000",
-      opacity: 0.15,
+      opacity: 0.25,
     },
   },
 })((props) => <Tabs {...props} TabIndicatorProps={{ children: <span /> }} />);
@@ -97,7 +97,7 @@ const StyledTab = withStyles((theme) => ({
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
-    width: "100%",
+    width: "120%",
     backgroundColor: theme.palette.background.paper,
   },
 }));
@@ -130,8 +130,9 @@ const MarketTab = () => {
         style={{
           backgroundColor: "#DF662B",
           width: "100%",
-          maxWidth: "680",
+          maxWidth: "100%",
           borderRadius: 10,
+          alignSelf: "center",
         }}
         position="static"
       >

@@ -22,7 +22,7 @@ import { getUsername } from "../../utils/getUsernameFromAddress";
 const useStyles = makeStyles({
   root: {
     backgroundColor: "#080808",
-    maxWidth: 512,
+    maxWidth: "150%",
     borderRadius: 8,
     color: "#f1ffe3",
     maxHeight: 480,
@@ -34,7 +34,7 @@ const useStyles = makeStyles({
   },
   media: {
     height: 180,
-    width: 440,
+    width: "150%",
     borderRadius: 5,
     transition: "transform 0.15s ease-in-out",
     "&:hover": {
@@ -143,7 +143,7 @@ const MarketCard = ({
                     />
                     <MyTooltip title={window.web3.utils.fromWei(price).toString()} arrow>
                       <Typography variant="caption">
-                        Price: {isOnSale ? window.web3.utils.fromWei(price.toString()).slice(0,5) + " BNB" : "-"}
+                        Price: {isOnSale ? window.web3.utils.fromWei(price.toString()).slice(0,5) + "BNB" : "-"}
                       </Typography>
                     </MyTooltip>
                   </div>
@@ -159,7 +159,7 @@ const MarketCard = ({
                     />
                     <MyTooltip title={window.web3.utils.fromWei(auctionPrice).toString()} arrow>
                       <Typography variant="caption">
-                        Highest bid: {isBiddable ? window.web3.utils.fromWei(auctionPrice.toString()).slice(0,5) + " BNB" : "-"}
+                        Highest bid: {isBiddable ? window.web3.utils.fromWei(auctionPrice.toString()).slice(0,5) + "BNB" : "-"}
                       </Typography>
                     </MyTooltip>
                   </div>
