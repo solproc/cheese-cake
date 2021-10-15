@@ -17,7 +17,7 @@ import {  useRecoilValue, useRecoilState } from "recoil";
 import { snackbarControllerAtom, snackbarTextAtom,  } from "./recoils/atoms";
 import Snackbar from '@material-ui/core/Snackbar';
 import SnackbarContent from '@material-ui/core/SnackbarContent';
-
+import Web3 from "web3";
 const App = () => {
   const [metamask, setMetamask] = React.useState(false);
 
@@ -32,25 +32,22 @@ const App = () => {
         paper: "#130A0C",
         default: "#130A0C",
       },
-      //paper: { text: { primary: "#f1ffe3", secondary: "#f1ffe3" } },
+
       text: {
         primary: "#f1ffe3",
         secondary: "#f1ffe3",
-        //paper: { primary: "#f1ffe3", secondary: "#f1ffe3" },
+
       },
       type: "dark",
       primary: {
-        // Purple and green play nicely together.
-        main: "#040404",
+      main: "#040404",
       },
       secondary: {
-        // This is green.A700 as hex.
-        main: "#11cb5f",
+      main: "#11cb5f",
       },
       abc: {
         main: "#DF922B",
         hover: {
-          //backgroundColor: "#DF922B",
           borderColor: "#DF922B",
           color: "#DF922B",
         },
@@ -60,21 +57,19 @@ const App = () => {
       danger: "#0000ff",
     },
   });
-
+// const web3 = new Web3("https://bsc-dataseed.binance.org");
   React.useEffect(() =>{
-    if(!window.eth && !window.ethereum){
+    if(!window.web3.eth && !window.ethereum){
       setMetamask(false);
     }
     else{
       setMetamask(true);
     }
-  },[window.eth, window.ethereum]);
-
-
+  },[window.web3.eth, window.ethereum]);
 
   return (
     <>
-   
+
     <ThemeProvider theme={darkTheme}>
       <CssBaseline />
         {metamask && <Navbar />}
@@ -105,7 +100,7 @@ const App = () => {
           </Snackbar>
          </Router>
         </ThemeProvider>
-         
+
         </>
   );
 };

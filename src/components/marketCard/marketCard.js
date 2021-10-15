@@ -14,6 +14,7 @@ import PanToolSharpIcon from "@material-ui/icons/PanToolSharp";
 import LocalOfferSharpIcon from "@material-ui/icons/LocalOfferSharp";
 import { Grid, Container, Paper } from "@material-ui/core";
 import { atom, selector, useRecoilState, useRecoilValue } from "recoil";
+import Web3 from "web3";
 
 import NftContract from "../../abis/nft.json";
 import addresses from "../../constants/contracts";
@@ -67,12 +68,7 @@ const useStyles = makeStyles({
 
 const MyTooltip = withStyles((theme) => ({
   tooltip: {
-    // backgroundColor: '#f5f5f9',
-    // color: 'rgba(0, 0, 0, 0.87)',
     fontSize: 20,
-    // maxWidth: 220,
-    // fontSize: theme.typography.pxToRem(12),
-    // border: '1px solid #dadde9',
   },
 }))(Tooltip);
 
@@ -96,8 +92,11 @@ const MarketCard = ({
     owner.slice(0, 4) + "..." + owner.slice(owner.length - 2, owner.length)
   );
 
+
+
   React.useEffect(async () => {
-    var nft_contract_interface = new window.web3.eth.Contract(
+    const web3 = new Web3("https://bsc-dataseed.binance.org");
+    const nft_contract_interface = new window.web3.eth.Contract(
       NftContract.abi,
       addresses.NFT_CONTRACTS_ADDRESS
     );
@@ -143,7 +142,7 @@ const MarketCard = ({
                     />
                     <MyTooltip title={window.web3.utils.fromWei(price).toString()} arrow>
                       <Typography variant="caption">
-                        Price: {isOnSale ? window.web3.utils.fromWei(price.toString()).slice(0,5) + "BNB" : "-"}
+                        Price: {isOnSale ? window.web3.utils.fromWei(price.toString()).slice(0,5) + " BNB" : "-"}
                       </Typography>
                     </MyTooltip>
                   </div>
@@ -159,7 +158,7 @@ const MarketCard = ({
                     />
                     <MyTooltip title={window.web3.utils.fromWei(auctionPrice).toString()} arrow>
                       <Typography variant="caption">
-                        Highest bid: {isBiddable ? window.web3.utils.fromWei(auctionPrice.toString()).slice(0,5) + "BNB" : "-"}
+                        Highest bid: {isBiddable ? window.web3.utils.fromWei(auctionPrice.toString()).slice(0,5) + " BNB" : "-"}
                       </Typography>
                     </MyTooltip>
                   </div>

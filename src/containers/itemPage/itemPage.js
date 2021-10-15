@@ -1,4 +1,5 @@
 import React from "react";
+import Web3 from "web3";
 import {
   makeStyles,
   Button,
@@ -38,26 +39,22 @@ import {
   itemIdAtom,
 } from "../../recoils/atoms";
 import { atom, selector, useRecoilState, useRecoilValue } from "recoil";
+import {
+  FacebookIcon,
+  LinkedinIcon,
+  RedditIcon,
+  TwitterIcon
+} from "react-share";
 
-{
-  /* <div
-  style={{
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-  }}
->
-  Hello world
-</div>; */
-}
-const MarketCardData = {
-  name: "Kol",
-  rarity: "Legendary",
-  owner: "Cavit",
-  imgUrl: "https://sc04.alicdn.com/kf/Uf4c62ba9db5c4371a07c52c140f7054cG.jpg",
-  price: "10",
-  auctionPrice: "12",
-};
+import { FacebookShareButton, TwitterShareButton, LinkedinShareButton, RedditShareButton } from "react-share";
+
+ const title = `${document.title}`;
+ const shareUrl = `${window.location.href}`;
+// const hashtag1 = "#CheeseCake";
+// const hashtag2 = "#NFT";
+// const hashtag3 = "#cheeseswap";
+// const hashtag4 = "#BSC";
+
 
 const transactionColors = {
   "On Sale": "#8f84d8ff",
@@ -99,9 +96,8 @@ const ItemPage = (props) => {
   const [transactions, setTransactions] = useRecoilState(transactionData);
   const [id, setId] = useRecoilState(itemIdAtom);
   const [owner, setOwner] = React.useState("...");
-
-
-  if(!window.eth && !window.ethereum){
+  const web3 = new Web3("https://bsc-dataseed.binance.org");
+  if(!window.web3.eth && !window.ethereum){
     window.location.href = window.location.origin;
   }
 
@@ -318,7 +314,7 @@ const ItemPage = (props) => {
                         }}
                       />
                       <Typography variant="body1" display="block" gutterbottom ="true">
-                        Price: {data.isOnSale ? window.web3.utils.fromWei(data.sellPrice) + "BNB" : "-"}
+                        Price: {data.isOnSale ? window.web3.utils.fromWei(data.sellPrice) + " BNB" : "-"}
                       </Typography>
                     </div>
                     <div>
@@ -337,9 +333,49 @@ const ItemPage = (props) => {
                           gutterbottom="true"
                         >
                           Highest Bid:{" "}
-                          {data.isBiddable ? window.web3.utils.fromWei(data.maxBid) + "BNB" : "-"}
+                          {data.isBiddable ? window.web3.utils.fromWei(data.maxBid) + " BNB" : "-"}
                         </Typography>
-                      </div>
+                        </div>
+                        <div style={{ display: "flex", flexDirection: "row", marginTop: 20, paddingLeft: 5, paddingRight: 5, marginLeft: 5, marginRight: 5 }}>
+                        <h3> Share: </h3>&nbsp;&nbsp;
+                        <TwitterShareButton
+                          url={shareUrl}
+                          title={title}
+                          hashtags={["CheeseCake", "NFT", "BSC", "CheeseSwap"]}
+                          className="socialShare">
+                         <TwitterIcon
+                          size={32}
+                          round />
+                        </TwitterShareButton> &nbsp;&nbsp;
+                        <FacebookShareButton
+                          url={shareUrl}
+                          title={title}
+                          hashtags={["CheeseCake", "NFT", "BSC", "CheeseSwap"]}
+                          className="socialShare">
+                         <FacebookIcon
+                          size={32}
+                          round />
+                        </FacebookShareButton> &nbsp;&nbsp;
+                        <LinkedinShareButton
+                          url={shareUrl}
+                          title={title}
+                          hashtags={["CheeseCake", "NFT", "BSC", "CheeseSwap"]}
+                          className="socialShare">
+                         <LinkedinIcon
+                          size={32}
+                          round />
+                        </LinkedinShareButton> &nbsp;&nbsp;
+                        <RedditShareButton
+                          url={shareUrl}
+                          title={title}
+                          hashtags={["CheeseCake", "NFT", "BSC", "CheeseSwap"]}
+                          className="socialShare">
+                         <RedditIcon
+                          size={32}
+                          round />
+                        </RedditShareButton>
+                        </div>
+
                     </div>
                   </div>
                   <div style={{ marginRight: 140, marginTop: 30 }}>
@@ -479,7 +515,7 @@ const ItemPage = (props) => {
                             <TableCell align="center" style={{color:"#000", fontSize: 16}}>
                               {transaction.returnValues.value == 0
                                 ? " - "
-                                : window.web3.utils.fromWei(transaction.returnValues.value) + "BNB"}
+                                : window.web3.utils.fromWei(transaction.returnValues.value) + " BNB"}
                             </TableCell>
                             <TableCell align="center" style={{color:"#000", fontSize: 16}}>
                             <Button

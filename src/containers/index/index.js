@@ -29,7 +29,7 @@ import DirectionsRunSharpIcon from '@material-ui/icons/DirectionsRunSharp';
 import FormatListNumberedSharpIcon from '@material-ui/icons/FormatListNumberedSharp';
 import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord';
 import ShareSharpIcon from '@material-ui/icons/ShareSharp';
-
+import Web3 from "web3";
 
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -100,13 +100,14 @@ const Index = () => {
     const [snackOpen, setSnackOpen] = React.useState(false);
 
     React.useEffect(() =>{
-        if(!window.eth && !window.ethereum){
+       const web3 = new Web3("https://bsc-dataseed.binance.org");
+        if(!window.web3.eth && !window.ethereum){
             setSnackOpen(true);
           }
           else{
             setSnackOpen(false);
           }
-    },[window.eth, window.ethereum]);
+    },[window.web3.eth, window.ethereum]);
 
     function MyButton(props) {
       const { color, ...other } = props;
@@ -118,12 +119,8 @@ const Index = () => {
 <Container maxWidth="md">
     <Snackbar
         open={snackOpen}
-        // autoHideDuration={3000}
         anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
-        // onClose={()=>{
-        //             setSnackOpen(false)
-        //         }}
-    >
+       >
       <SnackbarContent style={{
           backgroundColor:'#130A0C',
           color: '#DF922B',
@@ -168,7 +165,7 @@ const Index = () => {
                         window.location.href = "/marketplace";
                   }}
               >
-                <FormatListNumberedSharpIcon style={{ color: "#DF662B", fontSize: 50}}/>
+                <StoreMallDirectorySharpIcon style={{ color: "#DF662B", fontSize: 50}}/>
                 <Typography className ={classes.boxText}>
                   Make Best Deal!
                 </Typography>

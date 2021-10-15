@@ -2,6 +2,8 @@
   "name": "cheese-cake-ui",
   "version": "0.1.2",
   "private": false,
+  "license": "MIT",
+  "homepage": "/",
   "dependencies": {
     "@material-ui/core": "^4.11.3",
     "@material-ui/icons": "^4.11.2",
@@ -14,6 +16,7 @@
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
+    "react-share": "^4.4.0",
     "react-spring": "^9.3.0",
     "recoil": "^0.2.0",
     "styled-components": "^5.2.3",

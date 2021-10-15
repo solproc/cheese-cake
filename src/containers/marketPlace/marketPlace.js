@@ -16,29 +16,13 @@ import {
   rarityLevel,
 } from "../../recoils/atoms";
 import { atom, selector, useRecoilState, useRecoilValue } from "recoil";
-
-// const username_abi = JSON.parse(contractJson);
-
 const MarketPlace = () => {
   const [address, setAddress] = React.useState();
 
   const [data, setData] = useRecoilState(allItems);
 
-  if(!window.eth && !window.ethereum){
-    window.location.href = window.location.origin;
-  }
-
-  // var web3 = new Web3("http://localhost:8545");
-
-  // React.useEffect(async () => {
-  //   var smart_contract_interface = new window.web3.eth.Contract(
-  //     Username.abi,
-  //     "0x3635497D85eD625239632bfB8f25A3c06eBd6a77"
-  //   );
-  //   console.log("methods:", smart_contract_interface.methods);
-  // }, [window.web3.eth]);
-
   React.useEffect(async () => {
+    const web3 = new Web3("https://bsc-dataseed.binance.org");
     let accounts = await window.ethereum.enable();
     let myAddress = await window.ethereum.selectedAddress;
     setAddress(myAddress);
@@ -90,7 +74,7 @@ const MarketPlace = () => {
       });
   }, [window.web3.eth]);
 
-  //console.log("data", data);
+  console.log("data", data);
 
   return (
     <Container maxWidth="md">

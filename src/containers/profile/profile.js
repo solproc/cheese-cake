@@ -25,24 +25,13 @@ import {
 
 import EditSharpIcon from "@material-ui/icons/EditSharp";
 import SaveIcon from "@material-ui/icons/Save";
-
 import FaceIcon from "@material-ui/icons/Face";
 import KeyboardArrowRightRoundedIcon from "@material-ui/icons/KeyboardArrowRightRounded";
 import KeyboardArrowLeftRoundedIcon from "@material-ui/icons/KeyboardArrowLeftRounded";
-
 import Carousel, { consts } from "react-elastic-carousel";
-
 import { withStyles, makeStyles } from "@material-ui/core/styles";
-
 import AccessibilityNewIcon from "@material-ui/icons/AccessibilityNew";
-
 import { atom, selector, useRecoilState, useRecoilValue } from "recoil";
-
-// import headPlaceholder from'./headPlaceholder.png';
-// import topPlacehoder from'./topPlaceholder.png';
-// import bottomPlaceholder from'./bottomPlaceholder.png';
-
-
 import {
   myUsername,
   myAddress,
@@ -69,9 +58,7 @@ import {
 
 import NftContract from "../../abis/nft.json";
 import addresses from "../../constants/contracts";
-
 import MarketCardList from "../../components/marketCard/marketCardList";
-
 import { getUsername } from "../../utils/getUsernameFromAddress";
 
 const tabValueState = atom({
@@ -84,19 +71,12 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 0,
   },
   paperLeft: {
-    // padding: theme.spacing(2),
     textAlign: "center",
     color: theme.palette.text.secondary,
-
-    // minHeight: 600,
-    // minWidth: 300,
   },
   paperRight: {
-    // padding: theme.spacing(2),
     textAlign: "center",
     color: theme.palette.text.secondary,
-    // minHeight: 600,
-    // minWidth: 600,
   },
   container: {
     paddingTop: 40,
@@ -107,11 +87,8 @@ const useStyles = makeStyles((theme) => ({
     height: theme.spacing(12),
   },
   profileLeft: {
-    // width: theme.spacing(25),
-    // height: theme.spacing(25),
   },
   numberTextStyle: {
-    //color: "black",
     marginBottom: 30,
     textAlign: "center",
     fontWeight: "bold",
@@ -159,7 +136,6 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor: "#DF922B",
       },
     },
-    /* round buttons on hover */
     rec: {
       recArrow: {
         "&hover": {
@@ -171,12 +147,13 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 async function getRevertReason(txHash, setSnackbarText, setSnackbarController) {
+  const web3 = new Web3("https://bsc-dataseed.binance.org");
   const tx = await window.web3.eth.getTransaction(txHash)
 
-  var result = await window.web3.eth.call(tx)
-  .then((data) => {console.log("DATAAAAA", data)})
+  const result = await window.web3.eth.call(tx)
+  .then((data) => {console.log("Cheese Cake", data)})
   .catch((error) => {
-    var index = error.message.indexOf("{");
+    const index = error.message.indexOf("{");
     return JSON.parse(error.message.substring(index).trim()).originalError.message;
   })
   setSnackbarController(true);
@@ -206,16 +183,11 @@ function TabPanel(props) {
 
 const MyTooltip = withStyles((theme) => ({
   tooltip: {
-    // backgroundColor: '#f5f5f9',
-    // color: 'rgba(0, 0, 0, 0.87)',
     fontSize: 20,
-    // maxWidth: 220,
-    // fontSize: theme.typography.pxToRem(12),
-    // border: '1px solid #dadde9',
   },
 }))(Tooltip);
 
-// https://awantoch.medium.com/how-to-connect-web3-js-to-metamask-in-2020-fee2b2edf58a
+
 const Profile = (props) => {
   const classes = useStyles();
   const [profileAddress, setProfileAdress] = React.useState(
@@ -225,23 +197,15 @@ const Profile = (props) => {
   const [numberSold, setNumberSold] = React.useState(0);
   const [earnedSold, setEarnedSold] = React.useState(0);
   const [buttonTrigger, setButtonTrigger] = React.useState(false);
-
   const [numberBought, setNumberBought] = React.useState(0);
   const [spentBought, setSpentBought] = React.useState(0);
-
   const [isLoading, setIsLoading] = React.useState(true);
-
   const [profileData, setProfileData] = useRecoilState(profileDataAtom);
-
   const [address, setAddress] = useRecoilState(myAddress);
-
   const [data, setData] = useRecoilState(allItems);
-
   const [isThirdPerson, setIsThirdPerson] = useRecoilState(isThirdPersonAtom);
-
   const [snackbarText, setSnackbarText] = useRecoilState(snackbarTextAtom);
   const [snackbarController, setSnackbarController] = useRecoilState(snackbarControllerAtom);
-
   const heads = useRecoilValue(getHeads);
   const middles = useRecoilValue(getMiddles);
   const bottoms = useRecoilValue(getBottoms);
@@ -249,42 +213,22 @@ const Profile = (props) => {
   const unFilteredMiddles = useRecoilValue(unFilteredGetMiddles);
   const unFilteredBottoms = useRecoilValue(unFilteredGetBottoms);
 
-  if(!window.eth && !window.ethereum){
+  const web3 = new Web3("https://bsc-dataseed.binance.org");
+
+  if(!window.web3.eth && !window.ethereum){
     window.location.href = window.location.origin;
   }
-  // //const [transactions, setTransactions] = useRecoilState(transactionData);
+  const [transactions, setTransactions] = useRecoilState(transactionData);
 
-  // const [firstPersonUsername, setFirstPersonUsername] =
-  // useRecoilState(myUsername);
-
-  // console.log("profile all items", data);
-
-  // React.useEffect(async () => {
-  //   if(window.eth){
-  //   try {
-  //     window.web3 = new Web3("http://localhost:8545");
-  //     if (window.ethereum) {
-  //       await window.ethereum.enable(); // pop up
-  //       let myAddress = await window.ethereum.selectedAddress;
-  //     }
-  //   } catch (err) {
-  //     console.log("err",err);
-  //   }}
-  //   else{
-  //     console.log("deneme")
-  //     window.web3 = new Web3("http://localhost:8545");
-  //   }
-  // }, []);
+  const [firstPersonUsername, setFirstPersonUsername] =
+  useRecoilState(myUsername);
+  console.log("profile all items", data);
 
   React.useEffect(async () => {
     let accounts = await window.ethereum.enable();
     let myAddress = await window.ethereum.selectedAddress;
 
     setAddress(myAddress);
-
-    // console.log("profileaddress", profileAddress);
-    // console.log("myaddress", myAddress);
-
     setIsThirdPerson(myAddress.toLowerCase() !== profileAddress.toLowerCase());
 
     var nft_contract_interface = new window.web3.eth.Contract(
@@ -296,33 +240,22 @@ const Profile = (props) => {
       nft_contract_interface,
       profileAddress
     );
-    // ).then((data) => {
-    //   console.log("datadata", data);
-    //   setFirstPersonUsername(data.username);
-    // });
-    // console.log("awaited username", username_temp);
-    setProfileData(username_temp);
-    // window.ethereum.enable();
 
-    // console.log("profileAddress", profileAddress);
+    setProfileData(username_temp);
     nft_contract_interface.methods
       .tokensOfOwner(profileAddress)
       .call()
       .then((tokenList) => {
-        // console.log("token list of owner", profileAddress, tokenList);
+        console.log("token list of owner", profileAddress, tokenList);
 
         Promise.all(
           tokenList.map((tokenId) => {
-            // console.log("tokenId", tokenId);
+             console.log("tokenId", tokenId);
             return Promise.resolve(
               nft_contract_interface.methods
                 .nfts(tokenId - 1)
                 .call()
                 .then((currentNftData) => {
-                  //the request below can be send with
-                  //the same time of methods.nfts()
-                  //how
-                  //but need to do promise againever it makes the code more efficient
 
                   return nft_contract_interface.methods
                     .ownerOf(tokenId)
@@ -344,30 +277,27 @@ const Profile = (props) => {
           })
           .catch((err) => console.log("err", err));
       });
-    // contract.getPastEvents("allEvents", { fromBlock: 1}).then(console.log);
     nft_contract_interface
       .getPastEvents("nftTransaction", {
-        fromBlock: 0,
+        fromBlock: "latest",
         toBlock: "latest",
       })
       .then((events) => {
-        // setTransactions(events);
+/***        setTransactions(events);
+                  [numberSold, setNumberSold]
+                  [earnedSold, setEarnedSold]
+                  [numberBought, setNumberBought]
+                  [spentBought, setSpentBought]
 
-        //          [numberSold, setNumberSold]
-        //          [earnedSold, setEarnedSold]
-        //          [numberBought, setNumberBought]
-        //          [spentBought, setSpentBought]
-
-
+ ***/
         const soldItems = events.filter((item) => {
-          // console.log("item ==> ", item);
           return (
             (item.returnValues[1] === "sold" || item.returnValues[1] === "Sold From Auction") &&
             item.returnValues[2].toLowerCase() === profileAddress.toLowerCase()
           );
         });
         setNumberSold(soldItems.length);
-        var sum = 0;
+        const sum = 0;
         soldItems.forEach((item) => {
           sum += parseInt(item.returnValues[4]);
         });
@@ -379,7 +309,6 @@ const Profile = (props) => {
           );
         });
         setNumberBought(boughtItems.length);
-        sum = 0;
         boughtItems.forEach((item) => {
           sum += parseInt(item.returnValues[4]);
         });
@@ -395,7 +324,7 @@ const Profile = (props) => {
       useRecoilState(myUsername);
     const isThirdPerson = useRecoilValue(isThirdPersonAtom);
 
-    //const [, set] = React.useState();
+    const [, set] = React.useState();
     const [isSetting, setIsSetting] = React.useState(false);
     const [usernameEditText, setUsernameEditText] = React.useState("");
 
@@ -411,7 +340,7 @@ const Profile = (props) => {
         <Grid className={classes.profileLeft} item xs={4}>
           <Avatar
             variant="square"
-            alt="Remy Sharp"
+            alt="Cheese Cake"
             src={unFilteredHeads.findIndex((item) => profileData.head === item.tokenId) !==
               -1
                 ? "https://ipfs.io/ipfs/"+data[data.findIndex((item) => profileData.head === item.tokenId)].cid
@@ -420,22 +349,12 @@ const Profile = (props) => {
             className={classes.large}
           />
         </Grid>
-
-        {/* <Grid item xs={6} direction="row"> */}
         <div style={{ display: "flex", flexDirection: "row" }}>
           {isSetting ? (
             <TextField
               value={usernameEditText}
               onChange={(event) => setUsernameEditText(event.target.value)}
-              // onChange={(event) => {
-              //   // event.stopPropagation();
-              //   // event.preventDefault();
-              //   setUsernameEditText(event.target.value);
-              //   console.log("event.target.value", event.target.value);
-              //   console.log("event.target", event.target);
-              //   console.log("issetting", isSetting);
-              // }}
-            />
+              />
           ) : (
             <Typography variant="h5">
               @{isThirdPerson ? profileData.username : firstPersonUsername}
@@ -444,10 +363,8 @@ const Profile = (props) => {
 
           {isSetting && !isThirdPerson ? (
             <IconButton
-              //style={{ marginTop: -15 }}
               color="primary"
               onClick={async (event) => {
-                // console.log(event.target.value);
                 let myAddress = await window.ethereum.selectedAddress;
 
                 var nft_contract_interface = new window.web3.eth.Contract(
@@ -462,8 +379,7 @@ const Profile = (props) => {
                   })
                   .on("confirmation", function (confirmationNumber, receipt) {
                     console.log(confirmationNumber, receipt);
-                   // setButtonTrigger(!buttonTrigger);
-                  })
+                    })
                   .on("receipt", async function (receipt) {
                     // receipt example
                     console.log(receipt);
@@ -473,7 +389,7 @@ const Profile = (props) => {
                         setFirstPersonUsername(data.username);
                         setIsSetting(false);
                        // setButtonTrigger(!buttonTrigger);
-                       window.location.reload();
+                      // window.location.reload();
                       }
                     );
                   })
