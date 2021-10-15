@@ -149,7 +149,7 @@ const ItemPage = (props) => {
     nft_contract_interface
       .getPastEvents("nftTransaction", {
         filter: { id: parseInt(myId) + 1},
-        fromBlock: 0,   // contract creation block
+        fromBlock: "latest",   // contract creation block
         toBlock: "latest",
       })
       .then((events) => {
@@ -161,7 +161,7 @@ const ItemPage = (props) => {
 
       nft_contract_interface.events.nftTransaction({
         filter: { id: parseInt(myId) + 1 },
-        fromBlock: 0,
+        fromBlock: "latest",
         toBlock: "latest",
     }, function(error, events){})
     .on('data', function(events){
