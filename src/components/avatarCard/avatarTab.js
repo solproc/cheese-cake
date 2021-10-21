@@ -1,7 +1,7 @@
   import React from "react";
   import { withStyles, makeStyles } from "@material-ui/core/styles";
   import FaceIcon from "@material-ui/icons/Face";
-  import AccessibilityNewIcon from "@material-ui/icons/AccessibilityNew";
+  import CakeIcon from "@material-ui/icons/Cake";
   import PropTypes from "prop-types";
 
   import { atom, selector, useRecoilState, useRecoilValue } from "recoil";
@@ -147,7 +147,7 @@
             <StyledTab
               label={
                 <div>
-                  <FaceIcon style={{ verticalAlign: "middle", marginRight: 8 }} />{" "}
+                  <CakeIcon style={{ verticalAlign: "middle", marginRight: 8 }} />{" "}
                   All Items{" "}
                 </div>
               }
@@ -156,7 +156,7 @@
             <StyledTab
               label={
                 <div>
-                  <FaceIcon style={{ verticalAlign: "middle", marginRight: 8 }} />{" "}
+                  <CakeIcon style={{ verticalAlign: "middle", marginRight: 8 }} />{" "}
                   Bean{" "}
                 </div>
               }
@@ -165,7 +165,7 @@
             <StyledTab
               label={
                 <div>
-                  <AccessibilityNewIcon
+                  <CakeIcon
                     style={{ verticalAlign: "middle", marginRight: 8 }}
                   />{" "}
                   Top Wear{" "}
@@ -176,7 +176,7 @@
             <StyledTab
               label={
                 <div>
-                  <AccessibilityNewIcon
+                  <CakeIcon
                     style={{ verticalAlign: "middle", marginRight: 8 }}
                   />{" "}
                   Bottom Wear{" "}
@@ -185,7 +185,7 @@
               {...a11yProps(3)}
             />
           </StyledTabs>
-        </AppBar> 
+        </AppBar>
         {allItemsFiltered.length == 0 ? (
           <div>No Items Found</div>
         ) : (

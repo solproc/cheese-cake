@@ -23,6 +23,7 @@ import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import PanToolSharpIcon from "@material-ui/icons/PanToolSharp";
 import LocalOfferSharpIcon from "@material-ui/icons/LocalOfferSharp";
 import StarsIcon from "@material-ui/icons/Stars";
+import CakeIcon from "@material-ui/icons/Cake";
 import DnsIcon from "@material-ui/icons/Dns";
 import ItemButtonGroup from "../../components/itemButtonGroup/itemButtonGroup";
 import NftContract from "../../abis/nft.json";
@@ -356,7 +357,7 @@ const ItemPage = (props) => {
                           </Typography>
                           </div>
                           <div style={{ display: "flex", flexDirection: "row" }}>
-                            <StarsIcon
+                            <CakeIcon
                               style={{
                                 verticalAlign: "middle",
                                 marginRight: 10,

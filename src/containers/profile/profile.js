@@ -30,7 +30,7 @@ import KeyboardArrowRightRoundedIcon from "@material-ui/icons/KeyboardArrowRight
 import KeyboardArrowLeftRoundedIcon from "@material-ui/icons/KeyboardArrowLeftRounded";
 import Carousel, { consts } from "react-elastic-carousel";
 import { withStyles, makeStyles } from "@material-ui/core/styles";
-import AccessibilityNewIcon from "@material-ui/icons/AccessibilityNew";
+import CakeIcon from "@material-ui/icons/Cake";
 import { atom, selector, useRecoilState, useRecoilValue } from "recoil";
 import {
   myUsername,
@@ -675,7 +675,7 @@ const Profile = (props) => {
               <StyledTab
                 label={
                   <div>
-                    <AccessibilityNewIcon
+                    <CakeIcon
                       style={{ verticalAlign: "middle", marginRight: 4 }}
                     />{" "}
                     All Cakes
@@ -1079,10 +1079,10 @@ const Profile = (props) => {
                       }}
                     >
                       <option value={"all"}>All</option>
-                      <option value={"legendary"}>Legendary</option>
-                      <option value={"epic"}>Epic</option>
-                      <option value={"rare"}>Rare</option>
-                      <option value={"common"}>Common</option>
+                      <option value={"legendary"}>LEGENDARY</option>
+                      <option value={"epic"}>EPIC</option>
+                      <option value={"rare"}>RARE</option>
+                      <option value={"common"}>COMMON</option>
                     </Select>
                   </FormControl>
                 </FormGroup>

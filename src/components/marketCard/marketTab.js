@@ -1,7 +1,7 @@
 import React from "react";
 import { withStyles, makeStyles } from "@material-ui/core/styles";
 import FaceIcon from "@material-ui/icons/Face";
-import AccessibilityNewIcon from "@material-ui/icons/AccessibilityNew";
+import CakeIcon from "@material-ui/icons/Cake";
 import PropTypes from "prop-types";
 
 import { atom, selector, useRecoilState, useRecoilValue } from "recoil";
@@ -148,7 +148,7 @@ const MarketTab = () => {
           <StyledTab
             label={
               <div>
-                <AccessibilityNewIcon style={{ verticalAlign: "middle", marginRight: 8 }} />{" "}
+                <CakeIcon style={{ verticalAlign: "middle", marginRight: 8 }} />{" "}
                 All Cakes{" "}
               </div>
             }
@@ -157,7 +157,7 @@ const MarketTab = () => {
           <StyledTab
             label={
               <div>
-                <AccessibilityNewIcon style={{ verticalAlign: "middle", marginRight: 8 }} />{" "}
+                <CakeIcon style={{ verticalAlign: "middle", marginRight: 8 }} />{" "}
                 Small Cakes{" "}
               </div>
             }
@@ -166,7 +166,7 @@ const MarketTab = () => {
           <StyledTab
             label={
               <div>
-                <AccessibilityNewIcon
+                <CakeIcon
                   style={{ verticalAlign: "middle", marginRight: 8 }}
                 />{" "}
                 Top Cakes{" "}
@@ -177,7 +177,7 @@ const MarketTab = () => {
           <StyledTab
             label={
               <div>
-                <AccessibilityNewIcon
+                <CakeIcon
                   style={{ verticalAlign: "middle", marginRight: 8 }}
                 />{" "}
                Base Cakes{" "}
@@ -250,10 +250,10 @@ const MarketTab = () => {
                       }}
                     >
                       <option value={"all"}>All</option>
-                      <option value={"legendary"}>Legendary</option>
-                      <option value={"epic"}>Epic</option>
-                      <option value={"rare"}>Rare</option>
-                      <option value={"common"}>Common</option>
+                      <option value={"legendary"}>LEGENDARY</option>
+                      <option value={"epic"}>EPIC</option>
+                      <option value={"rare"}>RARE</option>
+                      <option value={"common"}>COMMON</option>
                     </Select>
                   </FormControl>
                 </FormGroup>
