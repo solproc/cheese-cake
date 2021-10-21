@@ -68,10 +68,6 @@ const getMiddles = selector({
       tempRarityLevel,
       tempClothType
     );
-
-    // return temp.filter((item) => {
-    //   return item.clothType === "2";
-    // });
   },
 });
 
@@ -115,45 +111,6 @@ const getAllItemsFiltered = selector({
   },
 });
 
-// const getByFilter = selector({
-//   key: "getByFilter", // unique ID (with respect to other atoms/selectors)
-//   get: ({ get }) => {
-//     const tempIsBiddable = get(isBiddable);
-//     const tempIsOnSale = get(isOnSale);
-//     const tempRarityLevel = get(rarityLevel);
-//   },
-// });
-
-// const getMyHeads = selector({
-//   key: "myHeads", // unique ID (with respect to other atoms/selectors)
-//   get: ({ get }) => {
-//     const allItems = get(allItems);
-//     const userName = get(getUsername);
-//     return allItems.filter((item) => {
-//       return (item.clothType === 1) && (item.name === myUsername);
-//     });
-//   },
-// });
-
-// const getMyMiddles = selector({
-//   key: "myMiddles", // unique ID (with respect to other atoms/selectors)
-//   get: ({ get }) => {
-//     const allItems = get(allItems);
-//     return allItems.filter((item) => {
-//       return item.clothType === 2;
-//     });
-//   },
-// });
-
-// const getMyBottoms = selector({
-//   key: "myBottoms", // unique ID (with respect to other atoms/selectors)
-//   get: ({ get }) => {
-//     const allItems = get(allItems);
-//     return allItems.filter((item) => {
-//       return item.clothType === 3;
-//     });
-//   },
-// });
 
 const unFilteredGetHeads = selector({
   key: "unFilteredGetHeads", // unique ID (with respect to other atoms/selectors)
@@ -176,20 +133,12 @@ const unFilteredGetMiddles = selector({
     const tempClothType = "2";
     return temp.filter((item) => {return item.clothType === tempClothType});
 
-    // return temp.filter((item) => {
-    //   return item.clothType === "2";
-    // });
 }});
 
 const unFilteredGetBottoms = selector({
   key: "unFilteredGetBottoms", // unique ID (with respect to other atoms/selectors)
   get: ({ get }) => {
-
-
-    // console.log("tempIsBiddable", tempIsBiddable);
-    // console.log("tempIsOnSale", tempIsOnSale);
-    // console.log("tempRarityLevel", tempRarityLevel);
-    const temp = get(allItems);
+  const temp = get(allItems);
 
     const tempClothType = "3";
     return temp.filter((item) => {return item.clothType === tempClothType});
@@ -206,7 +155,5 @@ export {
   unFilteredGetHeads,
   unFilteredGetMiddles,
   unFilteredGetBottoms
-  // getMyHeads,
-  // getMyMiddles,
-  // getMyBottoms,
+
 };

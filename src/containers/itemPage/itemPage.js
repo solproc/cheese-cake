@@ -149,7 +149,7 @@ const ItemPage = (props) => {
     nft_contract_interface
       .getPastEvents("nftTransaction", {
         filter: { id: parseInt(myId) + 1},
-        fromBlock: "latest",   // contract creation block
+        fromBlock: 0,   // contract creation block
         toBlock: "latest",
       })
       .then((events) => {
@@ -161,7 +161,7 @@ const ItemPage = (props) => {
 
       nft_contract_interface.events.nftTransaction({
         filter: { id: parseInt(myId) + 1 },
-        fromBlock: "latest",
+        fromBlock: 0,
         toBlock: "latest",
     }, function(error, events){})
     .on('data', function(events){
@@ -199,13 +199,14 @@ const ItemPage = (props) => {
       <Grid item xs={3}>
         <Grid
           container
+          style={{ marginTop: 80 }}
           direction="column"
           justify="center"
           alignItems="center"
-          style={{ height: "90vh" }}
+          style={{ height: 490 }}
         >
           <div>
-            <img style={{ width: 300 }} src={"https://ipfs.io/ipfs/"+data.cid} />
+            <img style={{ width: 490 }} src={"https://ipfs.io/ipfs/"+data.cid} />
           </div>
 
         </Grid>
@@ -336,6 +337,42 @@ const ItemPage = (props) => {
                           {data.isBiddable ? window.web3.utils.fromWei(data.maxBid) + " BNB" : "-"}
                         </Typography>
                         </div>
+                        <div style={{ display: "flex", flexDirection: "row" }}>
+                          <StarsIcon
+                            style={{
+                              verticalAlign: "middle",
+                              marginRight: 10,
+                              marginTop: 24,
+                              fontSize: 20,
+                            }}
+                          />
+                          <Typography
+                            variant="body1"
+                            display="block"
+                            gutterbottom="true"
+                          >
+                          <br /> IPFS Proof: <a href={"https://ipfs.io/ipfs/"+data.cid} target="_blank" rel="nopener nofollow">&nbsp;<b>{"https://ipfs.io/ipfs/"+data.cid}</b></a>
+
+                          </Typography>
+                          </div>
+                          <div style={{ display: "flex", flexDirection: "row" }}>
+                            <StarsIcon
+                              style={{
+                                verticalAlign: "middle",
+                                marginRight: 10,
+                                marginTop: 24,
+                                fontSize: 20,
+                              }}
+                            />
+                            <Typography
+                              variant="body1"
+                              display="block"
+                              gutterbottom="true"
+                            >
+                            <br /> CheeseCake Type: &nbsp;&nbsp;<b>{data.clothType}</b>
+
+                            </Typography>
+                            </div>
                         <div style={{ display: "flex", flexDirection: "row", marginTop: 20, paddingLeft: 5, paddingRight: 5, marginLeft: 5, marginRight: 5 }}>
                         <h3> Share: </h3>&nbsp;&nbsp;
                         <TwitterShareButton
