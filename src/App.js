@@ -1,4 +1,5 @@
  import React from "react";
+ import styled from 'styled-components';
  import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
 // import React, { Suspense, useEffect, lazy } from 'react'
 // import { HashRouter, Route, Switch } from 'react-router-dom'
@@ -12,6 +13,7 @@ import AvatarPage from "./containers/avatarPage/avatarPage";
 import NotFoundPage from "./containers/notFoundPage/notFoundPage";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Navbar from "./components/navbar/navbar";
+import Footer from "./components/footer/footer";
 import {  useRecoilValue, useRecoilState } from "recoil";
 // import Footer from './components/Footer'
 import { snackbarControllerAtom, snackbarTextAtom,  } from "./recoils/atoms";
@@ -24,7 +26,23 @@ const App = () => {
   const [snackbarController, setSnackbarController] = useRecoilState(snackbarControllerAtom);
   const snackbarText = useRecoilValue(snackbarTextAtom);
 
-
+  const FooterSection = styled.div `
+    background-color: '#040404';
+    box-sizing: border-box;
+    z-index: 1;
+    margin: 0px;
+    min-width: 0px;
+    width: 100vw;
+    display: flex;
+    padding: 1rem;
+    bottom: 0px;
+    align-items: flex-start;
+    justify-content: space-evenly;
+    @media (max-width: 480px) {
+      flex-direction: column;
+      justify-content: flex-start;
+    }
+  `;
 
   const darkTheme = createMuiTheme({
     palette: {
@@ -97,11 +115,13 @@ const App = () => {
                 }}
                 message={<span id="client-snackbar" >{snackbarText}</span>}
             />
-          </Snackbar>
+          </Snackbar><br /><br /><br /><br />
+          <FooterSection>
+          <Footer />
+          </FooterSection>
          </Router>
         </ThemeProvider>
-
-        </>
+       </>
   );
 };
 
