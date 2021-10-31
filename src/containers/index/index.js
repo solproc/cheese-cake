@@ -1,36 +1,18 @@
-import React from "react";
-import Snackbar from '@material-ui/core/Snackbar';
-import {
-  Container,
-  Typography,
-  Grid,
-  Paper,
-  Avatar,
-  AppBar,
-  Tab,
-  Tabs,
-  Box,
-  Button,
-  IconButton,
-  Switch,
-  FormControl,
-  FormControlLabel,
-  FormGroup,
-  InputLabel,
-  Select,
-  Input,
-  TextField,
-  SnackbarContent
-} from "@material-ui/core";
-
-
-import StoreMallDirectorySharpIcon from '@material-ui/icons/StoreMallDirectorySharp';
-import DirectionsRunSharpIcon from '@material-ui/icons/DirectionsRunSharp';
-import FormatListNumberedSharpIcon from '@material-ui/icons/FormatListNumberedSharp';
-import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord';
-import ShareSharpIcon from '@material-ui/icons/ShareSharp';
+import React, { useState } from "react";
+import { Container, Typography, Button } from "@material-ui/core";
+import MarketTab from "../../components/marketCard/marketTab";
 import Web3 from "web3";
-
+import * as fs from "fs";
+import NftContract from "../../abis/nft.json";
+import addresses from "../../constants/contracts";
+import { useRecoilCallback } from "recoil";
+import {
+  allItems,
+  isBiddable,
+  isOnSale,
+  rarityLevel,
+} from "../../recoils/atoms";
+import { atom, selector, useRecoilState, useRecoilValue } from "recoil";
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles({
@@ -96,104 +78,97 @@ const useStyles = makeStyles({
 });
 
 const Index = () => {
+  const [address, setAddress] = React.useState();
   const classes = useStyles();
-    const [snackOpen, setSnackOpen] = React.useState(false);
+  const [data, setData] = useRecoilState(allItems);
 
-    React.useEffect(() =>{
-       const web3 = new Web3("https://bsc-dataseed.binance.org");
-        if(!window.web3.eth && !window.ethereum){
-            setSnackOpen(true);
-          }
-          else{
-            setSnackOpen(false);
-          }
-    },[window.web3.eth, window.ethereum]);
+  React.useEffect(async () => {
+    const web3 = new Web3("https://bsc-dataseed1.binance.org");
+    let accounts = await window.ethereum.enable();
+    let myAddress = await window.ethereum.selectedAddress;
+    setAddress(myAddress);
 
-    function MyButton(props) {
-      const { color, ...other } = props;
-      const classes = useStyles(props);
-      return <Button className={classes.root} {...other} />;
+    var nft_contract_interface = new window.web3.eth.Contract(
+      NftContract.abi,
+      addresses.NFT_CONTRACTS_ADDRESS
+    );
+
+    nft_contract_interface.methods
+      .totalSupply()
+      .call()
+      .then((totalNftCount) => {
+        let nftIds = [];
+        for (var i = 15; i < totalNftCount; i=i+1) {
+
+          nftIds.push(i);
+        }
+        Promise.all(
+          nftIds.map((index) => {
+            return Promise.resolve(
+              nft_contract_interface.methods
+                .tokenByIndex(index)
+                .call()
+                .then((currentTokenId) => {
+                  return nft_contract_interface.methods
+                    .nfts(currentTokenId - 1)
+                    .call()
+                    .then((currentNftData) => {
+
+                    return nft_contract_interface.methods
+                        .ownerOf(currentTokenId)
+                        .call()
+                        .then((owner) => {
+                          return {
+                            ...currentNftData,
+                            id: currentTokenId - 1,
+                            owner: owner,
+                          };
+                        });
+                    });
+                })
+            );
+          })
+        )
+          .then((values) => {
+            setData(values);
+          })
+          .catch((err) => console.log("err", err));
+      });
+  }, [window.web3.eth]);
+
+//  console.log("data", data);
+const [sortStatus, setSortStatus] = useState(true);
+const handleSort = () => {
+    const data = [];
+    if (sortStatus) {
+        let sorted = data.sort((a, b) => a[1] - b[1]);
+      data(sorted);
+        setSortStatus(!sortStatus);
+    } else {
+        let sorted = data.sort((a, b) => b[1] - a[1]);
+        data(sorted);
+        setSortStatus(!sortStatus);
     }
+  }
 
-    return (
-<Container maxWidth="md">
-    <Snackbar
-        open={snackOpen}
-        anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
-       >
-      <SnackbarContent style={{
-          backgroundColor:'#130A0C',
-          color: '#DF922B',
-          width: "100%",
-          fontSize: 14,
-          }}
-          message={<span id="client-snackbar" >In order to proceed to the marketplace and profile pages, you should install Metamask extension to your browser.</span>}
-      />
-    </Snackbar>
-    <Typography variant="h2" align="center" component="h1" gutterbottom="true" style={{paddingTop:"2vw", color:"#DF922B", fontSize: 70}}>
-         <br />    🥮 Cheese Cake Shop <br /> <br />
-            </Typography>
-        <div style = {{
-              display: "flex",
-              flexDirection: "row",
-              marginTop: 30,
-              marginRight:"2vw",
-              marginLeft:"6vw"
-            }}
-            >
-              <div  className={classes.boxes}
-                    onClick={() => {
-                    window.location.href = "/marketplace";
-                  }}>
-                <StoreMallDirectorySharpIcon style={{ color: "#DF662B", fontSize: 50}}/>
-                <Typography className ={classes.boxText}>
-                  Buy & Sell
-                </Typography>
-              </div>
-              <div className={classes.boxes}
-                  onClick={() => {
-                        window.location.href = "/marketplace";
-                  }}
-                  >
-                <DirectionsRunSharpIcon style={{ color: "#DF662B", fontSize: 50}}/>
-                <Typography className ={classes.boxText}>
-                  Chase & Bid
-                </Typography>
-              </div>
-              <div className={classes.boxes}
-                  onClick={() => {
-                        window.location.href = "/marketplace";
-                  }}
-              >
-                <StoreMallDirectorySharpIcon style={{ color: "#DF662B", fontSize: 50}}/>
-                <Typography className ={classes.boxText}>
-                  Make Best Deal!
-                </Typography>
-              </div>
-              </div>
+  return (
+    <Container maxWidth="md">
+      <Typography variant="h2" style={{ marginBottom: 20, marginTop: 30 }}>
+      <br /> 🥮 CheeseCake NFT Marketplace   <br />
+      </Typography>
+    <div className="boxes">
+    <p> <b> IF YOU DO NOT FIND YOUR ASSETS HERE, THEN PLEASE NAVIGATE TO ALL ITEMS OR PROFILE PAGES.</b></p><br /><br />
+    </div>
 
-        <Grid style={{marginRight: "3vw", marginLeft: "3vw", marginTop:20}}>
-
-        </Grid>
-      <Grid
-        container
-        direction="row"
-        justify="center"
-        alignItems="baseline"
-      >
-        <Grid>
-          <React.Fragment>
-          {!snackOpen?
-            <MyButton style={{marginTop: "2"},  {marginBottom: "2"}} onClick={() => {
-                      window.location.href = "/marketplace";
-                    }} color="black"><b>Go To MarketPlace!</b></MyButton>
-                    :<MyButton style={{marginTop: "2"}, {marginBottom: "2"}} disabled onClick={() => {
-                      window.location.href = "/marketplace";
-                    }} color="black"><b>Go To MarketPlace!</b></MyButton>}
-          </React.Fragment>
-        </Grid>
-      </Grid>
+      <MarketTab style={{ marginTop: 10 }} />
+      <button onClick={handleSort}>ClickMe to Sort</button>
+    <div className="boxes">
+    <p> <b> IF YOU DO NOT FIND YOUR ASSETS HERE, THEN PLEASE NAVIGATE TO ALL ITEMS OR PROFILE PAGES.</b></p>
+    </div>
     </Container>
-    )
-}
+  );
+};
+
+// export default MarketPlace;
+
 export default Index;

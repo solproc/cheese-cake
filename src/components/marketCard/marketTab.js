@@ -116,10 +116,10 @@ const MarketTab = () => {
   const [marketIsOnSale, setMarketIsOnSale] = useRecoilState(isOnSale);
   const [marketRariryLevel, setMarketRariryLevel] = useRecoilState(rarityLevel);
 
-   console.log("allItems", items);
-  console.log("heads", heads);
-   console.log("middles", middles);
-  console.log("bottoms", bottoms);
+//   console.log("allItems", items);
+//  console.log("heads", heads);
+//   console.log("middles", middles);
+//  console.log("bottoms", bottoms);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);

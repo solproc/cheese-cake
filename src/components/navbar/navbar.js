@@ -236,18 +236,6 @@ const Navbar = () => {
           IPFS Upload
     </MenuItem>
       <MenuItem onClick={() => {
-                window.location.href = "/allItems";
-              }}>
-              <SupervisedUserCircleIcon
-                style={{
-                  verticalAlign: "middle",
-                  marginRight: 5,
-                  fontSize: 20,
-                }}
-              />
-              Recepies
-      </MenuItem>
-      <MenuItem onClick={() => {
                 window.location.href = "/marketplace";
               }}>
               <StorefrontIcon
@@ -358,21 +346,6 @@ const Navbar = () => {
                 }}
               />
               IPFS Upload
-            </Button>
-            <Button
-              color="inherit"
-              onClick={() => {
-                window.location.href = "/allItems";
-              }}
-            >
-              <SupervisedUserCircleIcon
-                style={{
-                  verticalAlign: "middle",
-                  marginRight: 5,
-                  fontSize: 20,
-                }}
-              />
-              Recepies
             </Button>
              <Button
               color="inherit"

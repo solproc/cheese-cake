@@ -147,7 +147,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 async function getRevertReason(txHash, setSnackbarText, setSnackbarController) {
-  const web3 = new Web3("https://bsc-dataseed.binance.org");
+  const web3 = new Web3("https://bsc-dataseed1.binance.org");
   const tx = await window.web3.eth.getTransaction(txHash)
 
   const result = await window.web3.eth.call(tx)
@@ -213,7 +213,7 @@ const Profile = (props) => {
   const unFilteredMiddles = useRecoilValue(unFilteredGetMiddles);
   const unFilteredBottoms = useRecoilValue(unFilteredGetBottoms);
 
-  const web3 = new Web3("https://bsc-dataseed.binance.org");
+  const web3 = new Web3("https://bsc-dataseed1.binance.org");
 
   if(!window.web3.eth && !window.ethereum){
     window.location.href = window.location.origin;
@@ -283,13 +283,7 @@ const Profile = (props) => {
         toBlock: "latest",
       })
       .then((events) => {
-/***        setTransactions(events);
-                  [numberSold, setNumberSold]
-                  [earnedSold, setEarnedSold]
-                  [numberBought, setNumberBought]
-                  [spentBought, setSpentBought]
 
- ***/
         const soldItems = events.filter((item) => {
           return (
             (item.returnValues[1] === "sold" || item.returnValues[1] === "Sold From Auction") &&
@@ -315,7 +309,7 @@ const Profile = (props) => {
         setSpentBought(sum);
       });
     setIsLoading(false);
-    console.log("useeffect 😫😩😫😩");
+//    console.log("useeffect 😫😩😫😩");
   }, [window.web3.eth,buttonTrigger]);
 
   const UpperProfile = () => {

@@ -36,6 +36,7 @@ const App = () => {
     display: flex;
     padding: 1rem;
     bottom: 0px;
+    position: inherit;
     align-items: flex-start;
     justify-content: space-evenly;
     @media (max-width: 480px) {

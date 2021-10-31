@@ -3,10 +3,7 @@ import { Container, Typography, Button } from "@material-ui/core";
 import MarketTab from "../../components/marketCard/marketTab";
 import Web3 from "web3";
 import * as fs from "fs";
-
 import NftContract from "../../abis/nft.json";
-
-
 import addresses from "../../constants/contracts";
 import { useRecoilCallback } from "recoil";
 import {
