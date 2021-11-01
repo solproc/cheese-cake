@@ -98,7 +98,7 @@ const Index = () => {
       .call()
       .then((totalNftCount) => {
         let nftIds = [];
-        for (var i = 15; i < totalNftCount; i=i+1) {
+        for (var i = 21; i < totalNftCount; i=i+1) {
 
           nftIds.push(i);
         }
